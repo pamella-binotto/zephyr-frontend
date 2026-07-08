@@ -1,4 +1,4 @@
-function Favorite(){
+function Favorites(){
     return(
     <h1>Favorite</h1>
     );
