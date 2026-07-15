@@ -5,25 +5,45 @@ import RecommendationCard from "../../components/RecommendationCard/Recommendati
 import ForecastCard from "../../components/ForecastCard/ForecastCard";
 
 import { useEffect, useState } from "react";
-import { getCurrentWeather } from "../../services/weatherService";
+import { getCurrentWeather, getForecast } from "../../services/weatherService";
 
 
 function Home() {
 
     const [weather, setWeather] = useState(null);
+    const [forecast, setForecast] = useState(null);
+    const [city, setCity] = useState("Florianopolis")
 
     useEffect(() => {
 
-        async function loadWeather() {
+        async function loadWeatherData() {
 
-            const data = await getCurrentWeather("São Paulo");
+            const weatherData = await getCurrentWeather(city);
+            setWeather(data);
 
-            setWeather(data)
-
+            const forecastData = await getForecast(city);
+            setForecast(forecastData)
         }
 
-        loadWeather();
+        loadWeatherData();
 
+    }, [city]);
+
+    useEffect(() => {
+
+        navigator.geolocation.getCurrentPosition(
+
+            (position) => {
+
+                console.log(position.coords.latitude);
+                console.log(position.coords.longitude);
+            },
+
+            () => {
+
+                console.log("O usuário negou o GPS");
+            }
+        );
     }, []);
 
 
@@ -33,7 +53,7 @@ function Home() {
             <SearchBar />
             {weather && <WeatherCard weather={weather} />}
             <RecommendationCard />
-            <ForecastCard />
+            <ForecastCard /> 
         </>
     );
 }

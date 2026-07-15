@@ -9,3 +9,5 @@ function WeatherCard({ weather }) {
         </div>
     );
 }
+
+export default WeatherCard;
