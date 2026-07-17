@@ -50,10 +50,10 @@ function Home() {
     return (
         <>
             <Header />
-            <SearchBar  city={city} setCity={setCity}/>
+            <SearchBar city={city} setCity={setCity} />
             {weather && <WeatherCard weather={weather} />}
             <RecommendationCard />
-            <ForecastCard /> 
+            {forecast && <ForecastCard forecast={forecast} />}
         </>
     );
 }
