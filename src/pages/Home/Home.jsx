@@ -19,7 +19,7 @@ function Home() {
         async function loadWeatherData() {
 
             const weatherData = await getCurrentWeather(city);
-            setWeather(data);
+            setWeather(weatherData);
 
             const forecastData = await getForecast(city);
             setForecast(forecastData)
@@ -50,7 +50,7 @@ function Home() {
     return (
         <>
             <Header />
-            <SearchBar />
+            <SearchBar  city={city} setCity={setCity}/>
             {weather && <WeatherCard weather={weather} />}
             <RecommendationCard />
             <ForecastCard /> 
