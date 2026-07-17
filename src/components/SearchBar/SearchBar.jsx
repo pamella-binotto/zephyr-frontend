@@ -12,6 +12,12 @@ function SearchBar({ city, setCity }) {
         setSearch(city);
     }, [city])
 
+    function handleKeyDown(e) {
+        if (event.key === "Enter"){
+            handleSearch();
+        }
+    }
+
 
     return (
         <div className="flex items-center p-4">
@@ -23,7 +29,8 @@ function SearchBar({ city, setCity }) {
                     type="text"
                     placeholder="🔍 Buscar cidade ..."
                     value={search}
-                    onChange={(e) => setSearch(e.target.value)} />
+                    onChange={(e) => setSearch(e.target.value)}
+                    onKeyDown={handleKeyDown} />
 
             </div>
 
