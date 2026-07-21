@@ -5,14 +5,15 @@ import RecommendationCard from "../../components/RecommendationCard/Recommendati
 import ForecastCard from "../../components/ForecastCard/ForecastCard";
 
 import { useEffect, useState } from "react";
-import { getCurrentWeather, getForecast } from "../../services/weatherService";
+import { getCurrentWeather, getForecast, getHourlyForecast } from "../../services/weatherService";
 
 
 function Home() {
 
     const [weather, setWeather] = useState(null);
     const [forecast, setForecast] = useState(null);
-    const [city, setCity] = useState("Florianopolis")
+    const [city, setCity] = useState("Florianopolis");
+    const [hourlyForecast, setHourlyForecast] = useState([]);
 
     useEffect(() => {
 
@@ -23,6 +24,9 @@ function Home() {
 
             const forecastData = await getForecast(city);
             setForecast(forecastData)
+
+            const hourlyData = await getHourlyForecast(city);
+            setHourlyForecast(hourlyData);
         }
 
         loadWeatherData();
@@ -51,7 +55,12 @@ function Home() {
         <>
             <Header />
             <SearchBar city={city} setCity={setCity} />
-            {weather && <WeatherCard weather={weather} />}
+            {weather && (
+                <WeatherCard
+                    weather={weather}
+                    hourlyForecast={hourlyForecast}
+                />
+            )}
             <RecommendationCard />
             {forecast && <ForecastCard forecast={forecast} />}
         </>

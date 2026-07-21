@@ -15,3 +15,9 @@ export async function getForecast(city) {
     return response.data;
     
 }
+
+export async function getHourlyForecast(city){
+
+    const response = await api.get(`/weather/forecast/hourly/${city}`);
+    return response.data;
+}
