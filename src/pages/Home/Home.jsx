@@ -12,7 +12,7 @@ function Home() {
 
     const [weather, setWeather] = useState(null);
     const [forecast, setForecast] = useState(null);
-    const [city, setCity] = useState("Florianopolis");
+    const [city, setCity] = useState("São José");
     const [hourlyForecast, setHourlyForecast] = useState([]);
 
     useEffect(() => {

@@ -8,10 +8,9 @@ function WeatherCard({ weather, hourlyForecast }) {
         bg-blue-600 backdrop-blur-md border border-white/20
          text-white shadow-2xl">
 
-            <div className="flex items-center justify-center gap-2 mb-6">
-                <span>📍</span>
-                <h2 className="text-2xl font-semibold">
-                    {weather.city}
+            <div className="flex items-center justify-center gap-2 mb-4">
+                <h2 className="text-2xl mt-2 font-semibold">
+                   📍 {weather.city}
                 </h2>
             </div>
 
