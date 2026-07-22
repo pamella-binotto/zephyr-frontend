@@ -5,7 +5,7 @@ import RecommendationCard from "../../components/RecommendationCard/Recommendati
 import ForecastCard from "../../components/ForecastCard/ForecastCard";
 
 import { useEffect, useState } from "react";
-import { getCurrentWeather, getForecast, getHourlyForecast } from "../../services/weatherService";
+import { getCurrentWeather, getForecast, getHourlyForecast, getAiRecommendation } from "../../services/weatherService";
 
 
 function Home() {
@@ -14,6 +14,7 @@ function Home() {
     const [forecast, setForecast] = useState(null);
     const [city, setCity] = useState("Florianópolis");
     const [hourlyForecast, setHourlyForecast] = useState([]);
+    const [recommendation, setRecommendation] = useState("");
 
     useEffect(() => {
 
@@ -27,13 +28,16 @@ function Home() {
 
             const hourlyData = await getHourlyForecast(city);
             setHourlyForecast(hourlyData);
+
+            const recommendationData = await getAiRecommendation(city);
+            setRecommendation(recommendationData);
         }
 
         loadWeatherData();
 
     }, [city]);
 
-        
+
     return (
         <>
             <Header />
@@ -44,7 +48,7 @@ function Home() {
                     hourlyForecast={hourlyForecast}
                 />
             )}
-            <RecommendationCard />
+            <RecommendationCard recommendation={recommendation} />
             {forecast && <ForecastCard forecast={forecast} />}
         </>
     );

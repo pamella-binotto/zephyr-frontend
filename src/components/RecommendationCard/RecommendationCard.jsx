@@ -1,6 +1,12 @@
-function RecommendationCard(){
+function RecommendationCard({recommendation}){
+    
+   
+    
     return(
-        <div>Recommendation Card</div>
+        <div>
+            <h2>🍃 Zephyr Recommends </h2>
+            <p>{recommendation}</p>
+        </div>
     );
 }
 
