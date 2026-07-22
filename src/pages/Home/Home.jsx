@@ -12,7 +12,7 @@ function Home() {
 
     const [weather, setWeather] = useState(null);
     const [forecast, setForecast] = useState(null);
-    const [city, setCity] = useState("São José");
+    const [city, setCity] = useState("Florianópolis");
     const [hourlyForecast, setHourlyForecast] = useState([]);
 
     useEffect(() => {
@@ -33,24 +33,7 @@ function Home() {
 
     }, [city]);
 
-    useEffect(() => {
-
-        navigator.geolocation.getCurrentPosition(
-
-            (position) => {
-
-                console.log(position.coords.latitude);
-                console.log(position.coords.longitude);
-            },
-
-            () => {
-
-                console.log("O usuário negou o GPS");
-            }
-        );
-    }, []);
-
-
+        
     return (
         <>
             <Header />
