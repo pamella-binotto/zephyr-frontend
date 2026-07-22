@@ -20,24 +20,31 @@ function SearchBar({ city, setCity }) {
 
 
     return (
-        <div className="flex items-center p-4">
+
+    <div className="
+    max-w-5xl mx-auto mt-6 px-4">
+
+        <div className="flex items-center bg-white rounded-full
+        shadow-lg px-3 py-2">
 
             <div className="flex-1">
 
-                <button onClick={handleSearch}>🔍</button>
+                <button onClick={handleSearch} className="text-xl px-2">🔍</button>
                 <input
+                className="flex-1 outline-none px-2 text-gray-700"
                     type="text"
-                    placeholder="🔍 Buscar cidade ..."
+                    placeholder=" Search city ..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                     onKeyDown={handleKeyDown} />
 
             </div>
 
-            <button> 📍 </button>
-            <button> 👤 </button>
+            <button className="text-xl px-2"> 📍 </button>
+            <button className="text-xl px-2"> 👤 </button>
 
         </div>
+    </div>    
     );
 }
 
