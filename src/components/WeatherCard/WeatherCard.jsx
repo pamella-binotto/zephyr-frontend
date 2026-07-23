@@ -1,6 +1,11 @@
+import { formatHour } from "../../utils/formatHour";
+import { getWeatherIcon } from "../../utils/weatherIcon";
+
+
 function WeatherCard({ weather, hourlyForecast }) {
 
     const nextHour = hourlyForecast?.[0];
+    const nextFewHours = hourlyForecast?.slice(0, 5) || [];
 
     return (
 
@@ -10,7 +15,7 @@ function WeatherCard({ weather, hourlyForecast }) {
 
             <div className="flex items-center justify-center gap-2 mb-4">
                 <h2 className="text-2xl mt-2 font-semibold">
-                   📍 {weather.city}
+                    📍 {weather.city}
                 </h2>
             </div>
 
@@ -36,12 +41,31 @@ function WeatherCard({ weather, hourlyForecast }) {
                 <span>{weather.windSpeed} km/h</span>
             </div>
 
-            <div className="flex justify-between items-center bg-white/10
-             rounded-xl px-4 py-3 mb-3">
-                <span>🌦️ Next Hour</span>
-                <span>{nextHour
-                    ? `${nextHour.rainProbability}%`
-                    : "--"}</span>
+            <div className="mt-6">
+
+                <h3 className="text-sm text-blue-100 mb-3">
+                    Next hours
+                </h3>
+
+                <div className="flex justify-between">
+
+                    {nextFewHours.map((hour) => (
+
+                        <div key={hour.dateTime} className="flex flex-col items-center">
+                            <img
+                                src={getWeatherIcon(hour.icon)}
+                                alt="weather icon"
+                                className="w-10 h-10"
+                            />
+
+                            <span className="text-sm">
+                                {formatHour(hour.dateTime)}
+                            </span>
+                        </div>
+                    ))}
+
+                </div>
+
             </div>
 
         </div>

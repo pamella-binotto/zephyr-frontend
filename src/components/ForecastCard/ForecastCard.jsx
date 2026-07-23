@@ -1,5 +1,5 @@
 import { formatDate } from "../../utils/dateFormatter"
-import { getWeatherIcon } from "../../utils/weatherIcon";
+import { getWeatherIconEmoj } from "../../utils/weatherIcon";
 
 function ForecastCard({ forecast }) {
 
@@ -26,7 +26,7 @@ function ForecastCard({ forecast }) {
                 </h3>
 
                 <p className="text-center text-4xl mb-4">
-                    {getWeatherIcon(day.rainProbability)}
+                    {getWeatherIconEmoj(day.rainProbability)}
                 </p>
 
                 <div className="space-y-2">
